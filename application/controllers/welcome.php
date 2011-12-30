@@ -34,6 +34,11 @@ class Welcome extends CI_Controller
 		$this->load->view('example1',$data);
 	}
 	
+	public function search()
+	{
+		
+	}
+	
 
 }
 
