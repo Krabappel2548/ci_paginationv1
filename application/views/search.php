@@ -62,24 +62,57 @@
 		border: 1px solid #D0D0D0;
 		-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
+	#searchform{
+		color: #444;
+		background-color: transparent;
+		border-bottom: 1px solid #D0D0D0;
+		font-size: 15px;
+		font-weight: normal;
+		margin: 0 0 14px 0;
+		padding: 14px 15px 10px 15px;
+		text-align: center;
+	
+	}
+	#searchterm{
+		width: 300px;
+		height: 20px;
+	}
+	#submit {
+	 color: #444;
+	 font-size: 15px;
+	 width: 135px;
+	 height: 30px;
+	 border: solid 1px #444;
+	 margin: 0;
+	 padding: 0;
+	 
+	}
 	</style>
 </head>
 <body>
 
-<div id="container">
-	<h1>Countries</h1>
+	<div id="container">
+		<h1><?=anchor(base_url() . 'welcome/example1','Countries')?></h1>
+		<form action ="<?=base_url()?>welcome/search" method="post" id="searchform">
+			Search the database:&nbsp;<input type="text" name="searchterm" id="searchterm" value="<?=$searchterm?>" />&nbsp;
+			<input type="submit" value="Search >>" id="submit" />
+		</form>
+		<div id="body">
+			<?php if($results == 0):?>
+				No records found.
+			<?php else:?>
+				<?php foreach($results as $r):?>
+					<?=$r->Name?><br />
+				<?php endforeach;?>
+			<?php endif;?>
+			<p>
+				<?=$links?>
+			</p>
+		</div>
 
-	<div id="body">
-		<?php foreach($results as $data):?>
-			<?=$data->Name?> - <?=$data->Continent?><br />
-		<?php endforeach;?>
-		<p>
-			<?=$links?>
-		</p>
+		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 	</div>
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
-</div>
 
 </body>
 </html>

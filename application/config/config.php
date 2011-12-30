@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://worlddb.dev/';
+$config['base_url']	= 'http://tutorial.dev/';
 
 /*
 |--------------------------------------------------------------------------

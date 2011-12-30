@@ -18,7 +18,7 @@ class Welcome extends CI_Controller
 	
 	public function example1()
 	{
-
+		$this->session->unset_userdata('searchterm');
 		$config['base_url'] = base_url() . 'welcome/example1';
 		$config['total_rows'] = $this->search_model->record_count();
 		$config['per_page'] = 20;
@@ -36,6 +36,23 @@ class Welcome extends CI_Controller
 	
 	public function search()
 	{
+
+		
+		$searchterm = $this->search_model->searchterm_handler($this->input->get_post('searchterm', TRUE));
+		$limit = ($this->uri->segment(3) > 0)?$this->uri->segment(3):0;
+		
+		$config['base_url'] = base_url() . 'welcome/search';
+		$config['total_rows'] = $this->search_model->search_record_count($searchterm);
+		$config['per_page'] = 20;
+		$config['uri_segment'] = 3;
+		$choice = $config['total_rows']/$config['per_page'];
+		$config['num_links'] = round($choice);		
+		$this->pagination->initialize($config);
+		
+		$data['results'] = $this->search_model->search($searchterm,$limit);
+		$data['links'] = $this->pagination->create_links();
+		$data['searchterm'] = $searchterm;
+		$this->load->view('search',$data);
 		
 	}
 	
