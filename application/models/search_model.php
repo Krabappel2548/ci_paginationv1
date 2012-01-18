@@ -22,7 +22,8 @@ class Search_Model extends CI_Model
 	
 	public function search($searchterm,$limit)
 	{
-		$sql = "SELECT * FROM Country WHERE Continent LIKE '%" . $searchterm . "%' LIMIT " .$limit . ",20";
+		$sql = "SELECT * FROM Country 
+				WHERE Continent LIKE '%" . $searchterm . "%' LIMIT " .$limit . ",20";
 		$q = $this->db->query($sql);
 		if($q->num_rows() > 0)
 		{

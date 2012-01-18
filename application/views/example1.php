@@ -93,7 +93,7 @@
 
 <div id="container">
 	<h1>Countries</h1>
-	<form action ="<?=base_url()?>welcome/search" method="post" id="searchform">
+	<form action ="<?=base_url()?>welcome/example" method="post" id="searchform">
 		Search the database:&nbsp;<input type="text" name="searchterm" id="searchterm"  />&nbsp;
 		<input type="submit" value="Search >>" id="submit" />
 	</form>
